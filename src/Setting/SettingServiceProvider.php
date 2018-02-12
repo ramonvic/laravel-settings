@@ -2,6 +2,7 @@
 
 namespace Unisharp\Setting;
 
+use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -30,7 +31,8 @@ class SettingServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('Setting', Setting::class);
-        $this->app->bind(SettingStorageContract::class, EloquentStorage::class);
+        $method = version_compare(Application::VERSION, '5.2', '>=') ? 'singleton' : 'bindShared';
+        $this->app->$method('Setting', Setting::class);
+        $this->app->$method(SettingStorageContract::class, EloquentStorage::class);
     }
 }
