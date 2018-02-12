@@ -17,11 +17,15 @@ class SettingServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $filename = '2015_08_06_184708_create_settings_table.php';
 
-        $this->publishes([
-            __DIR__.'/../../database/migrations/'.$filename => base_path('/database/migrations/'.$filename),
-        ], 'settings');
+        if (! class_exists('CreateSettingsTable')) {
+            $timestamp = date('Y_m_d_His', time());
+
+            $this->publishes([
+                __DIR__.'/../../database/migrations/create_settings_table.php.stub' => database_path("/migrations/{$timestamp}_create_settings_table.php"),
+            ], 'settings');
+        }
+
     }
 
     /**
