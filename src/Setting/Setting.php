@@ -2,9 +2,12 @@
 
 namespace Unisharp\Setting;
 
+use JsonSerializable;
+use Illuminate\Contracts\Support\Jsonable;
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Concerns\HasAttributes;
 
-class Setting
+class Setting implements Arrayable, Jsonable, JsonSerializable
 {
     public static $castMap = [];
 
@@ -112,9 +115,19 @@ class Setting
         return null;
     }
 
-    public function toJson()
+    public function toJson($options = 0)
     {
-        return \GuzzleHttp\json_encode($this->attributesToArray());
+        return json_encode($this->jsonSerialize(), $options);
+    }
+
+    public function toArray()
+    {
+        return $this->attributesToArray();
+    }
+
+    public function jsonSerialize()
+    {
+        return $this->toArray();
     }
 
     public function getDates(){ return []; }
