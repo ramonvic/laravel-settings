@@ -12,6 +12,18 @@ class EloquentStorage extends Eloquent implements SettingStorageContract
 
     public $timestamps = false;
 
+    public function retrieveAll($lang = null)
+    {
+        $setting = new static();
+        if (!is_null($lang)) {
+            $setting = $setting->where('locale', $lang);
+        } else {
+            $setting = $setting->whereNull('locale');
+        }
+
+        return $setting->get();
+    }
+
     public function retrieve($key, $lang = null)
     {
         $setting = static::where('key', $key);
