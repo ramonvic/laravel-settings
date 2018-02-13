@@ -52,9 +52,7 @@ class Setting
      */
     public function has($key)
     {
-        $exists = $this->has($key);
-
-        return $exists;
+        return $key && array_key_exists($key, $this->attributes);
     }
 
     public function get($key = null)
