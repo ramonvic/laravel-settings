@@ -2,6 +2,7 @@ language: php
 php:
   - '7.0'
   - '7.1'
+  - '7.2'
 
 env:
   - SH=bash
@@ -16,4 +17,3 @@ before_script:
 
 script:
   - vendor/bin/phpunit --verbose
-  - bash -c "[ $(echo "$(grep '^  Lines' builds/coverage.txt | awk '{print $2;}' | tr -d '%') >= 75" | bc) -eq "1" ]"
