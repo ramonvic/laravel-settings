@@ -1,6 +1,6 @@
 <?php
 
-namespace Unisharp\Setting;
+namespace Umobi\Setting;
 
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
@@ -35,8 +35,7 @@ class SettingServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $method = version_compare(Application::VERSION, '5.2', '>=') ? 'singleton' : 'bindShared';
-        $this->app->$method('Setting', Setting::class);
-        $this->app->$method(SettingStorageContract::class, EloquentStorage::class);
+        $this->app->singleton('Setting', Setting::class);
+        $this->app->singleton(SettingStorageContract::class, EloquentStorage::class);
     }
 }
