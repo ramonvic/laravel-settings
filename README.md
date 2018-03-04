@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/UniSharp/laravel-settings.svg?branch=master)](https://travis-ci.org/UniSharp/laravel-settings)
+[![Build Status](https://travis-ci.org/umobi/laravel-settings.svg?branch=master)](https://travis-ci.org/umobi/laravel-settings)
 
 # Persistent Settings Manager for Laravel
 
@@ -11,7 +11,7 @@
 1. Install package
 
     ```bash
-    composer require unisharp/laravel-settings
+    composer require umobi/laravel-settings
     ```
 
 1. Edit config/app.php (Skip this step if you are using laravel 5.5+)
@@ -19,13 +19,13 @@
     service provider:
 
     ```php
-    Unisharp\Setting\SettingServiceProvider::class,
+    Umobi\Setting\SettingServiceProvider::class,
     ```
 
     class aliases:
 
     ```php
-    'Setting' => Unisharp\Setting\SettingFacade::class,
+    'Setting' => Umobi\Setting\SettingFacade::class,
     ```
 
 1. Create settings table
@@ -79,12 +79,4 @@ Setting::get('item');
 
 Setting::get('item.USB');
 // return '8G';
-```
-
-## Dealing with locale
-
-By default language parameter are being resets every set or get calls. You could disable that and set your own long term language parameter forever using any route service provider or other method.
-
-```php
-Setting::lang(App::getLocale())->langResetting(false);
-```
+``

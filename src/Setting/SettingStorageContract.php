@@ -1,6 +1,6 @@
 <?php
 
-namespace Unisharp\Setting;
+namespace Umobi\Setting;
 
 interface SettingStorageContract
 {
