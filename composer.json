@@ -30,6 +30,9 @@
     "squizlabs/php_codesniffer": "^3.2"
   },
   "autoload": {
+    "files": [
+      "src/helpers.php"
+    ],
     "classmap": [
       "database"
     ],
