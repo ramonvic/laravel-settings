@@ -2,6 +2,7 @@
 
 namespace Umobi\Setting;
 
+use Illuminate\Support\Arr;
 use JsonSerializable;
 use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Contracts\Support\Arrayable;
@@ -35,10 +36,10 @@ class Setting implements Arrayable, Jsonable, JsonSerializable
             if (!is_array($value)) {
                 $value = $setting->value;
             }
-            array_set($attributes, $setting->key, $value);
+            Arr::set($attributes, $setting->key, $value);
         }
 
-        $attributes = array_dot($attributes);
+        $attributes = Arr::dot($attributes);
 
         foreach ($attributes as $key=>$value) {
             $this->setAttribute($key, $value);
