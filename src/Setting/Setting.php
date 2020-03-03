@@ -27,6 +27,12 @@ class Setting implements Arrayable, Jsonable, JsonSerializable
         }
     }
 
+    public function fresh()
+    {
+        $this->load();
+        return $this;
+    }
+
     private function load()
     {
         $settings = $this->storage->retrieveAll($this->lang);
